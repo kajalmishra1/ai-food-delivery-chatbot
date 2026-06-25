@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>OrderBuddy — Your Order Concierge</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Karla:wght@400;500;600&display=swap"
+        rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+    <!-- FOODIE ANIMATIONS BACKGROUND (behind everything) -->
+    <div class="foodie-bg" aria-hidden="true">
+        <span class="food-emoji">🍕</span>
+        <span class="food-emoji">🍔</span>
+        <span class="food-emoji">☕</span>
+        <span class="food-emoji">🧁</span>
+        <span class="food-emoji">🍜</span>
+        <span class="food-emoji">🍣</span>
+        <span class="food-emoji">🥑</span>
+        <span class="food-emoji">🍩</span>
+        <span class="food-emoji">🥘</span>
+        <span class="food-emoji">🍝</span>
+    </div>
+
+    <!-- ROBOT GREETING OVERLAY with Dishes -->
+    <div class="robot-overlay" id="robotOverlay">
+        <!-- Floating dishes around the robot -->
+        <div class="floating-dishes" aria-hidden="true">
+            <span class="dish dish-1">🍕</span>
+            <span class="dish dish-2">🍔</span>
+            <span class="dish dish-3">🍣</span>
+            <span class="dish dish-4">🥘</span>
+            <span class="dish dish-5">🧁</span>
+            <span class="dish dish-6">🍜</span>
+            <span class="dish dish-7">☕</span>
+            <span class="dish dish-8">🍩</span>
+            <span class="dish dish-9">🥑</span>
+            <span class="dish dish-10">🍝</span>
+            <span class="dish dish-11">🌮</span>
+            <span class="dish dish-12">🍱</span>
+        </div>
+
+        <div class="robot-container">
+            <!-- Robot with huge smile -->
+            <div class="robot-face">
+                <div class="robot-eyes">
+                    <div class="eye left"></div>
+                    <div class="eye right"></div>
+                </div>
+                <!-- Big smile -->
+                <div class="robot-smile">
+                    <svg viewBox="0 0 200 60" class="smile-svg">
+                        <path d="M 20 30 Q 50 55 80 30 Q 100 55 120 30 Q 150 55 180 30" 
+                              stroke="var(--brass-light)" 
+                              stroke-width="4" 
+                              fill="none" 
+                              stroke-linecap="round"/>
+                        <circle cx="22" cy="28" r="4" fill="var(--brass-light)" />
+                        <circle cx="178" cy="28" r="4" fill="var(--brass-light)" />
+                    </svg>
+                </div>
+                <!-- Cheeks -->
+                <div class="cheek left-cheek"></div>
+                <div class="cheek right-cheek"></div>
+            </div>
+
+            <!-- Speech bubble with Hello -->
+            <div class="speech-bubble">
+                <div class="bubble-content">
+                    <span class="robot-hello">Hello! 🍽️</span>
+                    <span class="robot-subtext">I'm OrderBuddy, your food concierge</span>
+                </div>
+                <div class="bubble-tail"></div>
+            </div>
+
+            <!-- Antenna -->
+            <div class="antenna">
+                <div class="antenna-ball"></div>
+            </div>
+
+            <button class="robot-btn" id="enterBtn">I'm Here To Help You🍕</button>
+        </div>
+    </div>
+
+    <!-- MAIN CHAT UI -->
+    <div class="MainPage" id="mainPage">
+        <div class="head">
+            <div class="head__crest">OB</div>
+            <h1>OrderBuddy</h1>
+            <p><i>Your smart assistant for orders, refunds &amp; delivery help</i></p>
+        </div>
+
+        <div class="chat-container">
+            <div class="chat-container__header">
+                <div class="chat-container__title">
+                    <h3>How can I help you?</h3>
+                    <p class="chat-container__status">
+                        <span class="seal"></span> At your service
+                    </p>
+                </div>
+            </div>
+
+            <div id="chatbox" aria-live="polite"></div>
+
+            <div class="quick-replies" id="quickReplies">
+                <button data-msg="Where is my order">Track order</button>
+                <button data-msg="I want a refund">Refund status</button>
+                <button data-msg="I want to cancel my order">Cancel order</button>
+            </div>
+
+            <div class="input-area">
+                <input id="user-input" type="text" placeholder="Type your message…" autocomplete="off" />
+                <button onclick="sendMessage()" aria-label="Send message">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                        <path
+                            d="M3 11.5L20 4L13 20.5L11 13L3 11.5Z"
+                            stroke="currentColor"
+                            stroke-width="1.6"
+                            stroke-linejoin="round"
+                        />
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/script.js"></script>
+</body>
+</html>
