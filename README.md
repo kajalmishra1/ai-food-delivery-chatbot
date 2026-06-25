@@ -116,4 +116,5 @@ This project is open-source and available for learning and educational purposes.
 # ✨ Author
 
 **Kajal Mishra**
+<br>
 ⭐ If you found this useful, consider starring the repo!
