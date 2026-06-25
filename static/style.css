@@ -1,3 +1,10 @@
+/* ============================================================
+   OrderBuddy — Design tokens + foodie animations + robot greeting
+   Palette: burgundy (#7A0E33), brass (#B8863B), warm tan (#DCC3AA),
+            parchment (#F3E9DA), ink (#2B1810), sage accent (#5C7A5A)
+   Type: Cormorant Garamond (display) + Karla (body/UI)
+   ============================================================ */
+
 :root {
     --burgundy: #7A0E33;
     --burgundy-deep: #5C0A26;
