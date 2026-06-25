@@ -1,16 +1,6 @@
 """
 Food Delivery FAQs Chatbot
 ---------------------------
-Matches user input against intents.json using TF-IDF + cosine similarity.
-
-Why this approach reduces "mismatched answers":
-1. TF-IDF gives rare/distinctive words (e.g. "refund", "coupon") more weight
-   than common words (e.g. "my", "order"), so the bot is less likely to
-   confuse similar-sounding intents like delivery_delay vs delivery_issue.
-2. A CONFIDENCE THRESHOLD means that if the best match score is too low,
-   the bot admits it doesn't understand (fallback) instead of guessing.
-3. Text is normalized (lowercased, punctuation stripped) before comparison,
-   so "What's my order status?!" matches "whats my order status".
 """
 
 import json
