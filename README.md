@@ -54,7 +54,7 @@ It uses classical NLP techniques (TF-IDF + Cosine Similarity) to understand user
 ---
 
 # 📁 Project Structure
-
+```
 Food Delivery Chatbot/
 │
 ├── app.py # Flask backend
@@ -68,7 +68,7 @@ Food Delivery Chatbot/
 └── static/
 ├── style.css # Styling
 └── script.js # Frontend logic
-
+```
 
 ---
 
