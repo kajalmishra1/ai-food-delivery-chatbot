@@ -1,0 +1,768 @@
+:root {
+    --burgundy: #7A0E33;
+    --burgundy-deep: #5C0A26;
+    --brass: #B8863B;
+    --brass-light: #D4A857;
+    --tan: #DCC3AA;
+    --parchment: #F8F0E3;
+    --parchment-dark: #EDE0C8;
+    --ink: #2B1810;
+    --ink-soft: #6B5B4D;
+    --sage: #5C7A5A;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    background: var(--tan);
+    background-image:
+        radial-gradient(circle at 20% 15%, rgba(122, 14, 51, 0.07) 0%, transparent 40%),
+        radial-gradient(circle at 80% 85%, rgba(184, 134, 59, 0.08) 0%, transparent 40%);
+    font-family: 'Karla', system-ui, sans-serif;
+    color: var(--ink);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+    padding: 32px 16px;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* ---------- FOODIE FLOATING ANIMATIONS (background layer) ---------- */
+.foodie-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.food-emoji {
+    position: absolute;
+    font-size: 3rem;
+    opacity: 0.15;
+    animation: floatFood linear infinite;
+    user-select: none;
+}
+
+.food-emoji:nth-child(1) { left: 6%; top: 12%; animation-duration: 18s; animation-delay: 0s; font-size: 4.2rem; opacity: 0.12; }
+.food-emoji:nth-child(2) { left: 88%; top: 8%; animation-duration: 22s; animation-delay: 1.2s; font-size: 3.6rem; opacity: 0.14; }
+.food-emoji:nth-child(3) { left: 15%; top: 72%; animation-duration: 20s; animation-delay: 0.6s; font-size: 5rem; opacity: 0.10; }
+.food-emoji:nth-child(4) { left: 78%; top: 68%; animation-duration: 25s; animation-delay: 2.0s; font-size: 4.8rem; opacity: 0.11; }
+.food-emoji:nth-child(5) { left: 45%; top: 5%; animation-duration: 19s; animation-delay: 0.3s; font-size: 3.2rem; opacity: 0.15; }
+.food-emoji:nth-child(6) { left: 55%; top: 88%; animation-duration: 23s; animation-delay: 1.8s; font-size: 4.0rem; opacity: 0.10; }
+.food-emoji:nth-child(7) { left: 2%; top: 44%; animation-duration: 21s; animation-delay: 0.9s; font-size: 3.4rem; opacity: 0.13; }
+.food-emoji:nth-child(8) { left: 93%; top: 46%; animation-duration: 24s; animation-delay: 2.4s; font-size: 3.8rem; opacity: 0.12; }
+.food-emoji:nth-child(9) { left: 30%; top: 92%; animation-duration: 17s; animation-delay: 0.1s; font-size: 4.4rem; opacity: 0.09; }
+.food-emoji:nth-child(10) { left: 68%; top: 20%; animation-duration: 26s; animation-delay: 1.5s; font-size: 3.0rem; opacity: 0.16; }
+
+@keyframes floatFood {
+    0% { transform: translate(0, 0) rotate(0deg) scale(1); }
+    25% { transform: translate(20px, -30px) rotate(8deg) scale(1.05); }
+    50% { transform: translate(-15px, -15px) rotate(-5deg) scale(0.95); }
+    75% { transform: translate(25px, 15px) rotate(6deg) scale(1.02); }
+    100% { transform: translate(0, 0) rotate(0deg) scale(1); }
+}
+
+/* ---------- ROBOT GREETING OVERLAY ---------- */
+.robot-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(145deg, rgba(43, 24, 16, 0.93), rgba(90, 40, 30, 0.88));
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+    transition: opacity 0.8s ease, visibility 0.8s ease;
+}
+
+.robot-overlay.hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+/* Floating dishes around the robot */
+.floating-dishes {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.dish {
+    position: absolute;
+    font-size: 2.8rem;
+    opacity: 0.35;
+    animation: floatDish linear infinite;
+    filter: drop-shadow(0 0 15px rgba(212, 168, 87, 0.2));
+}
+
+.dish-1 { left: 5%; top: 15%; animation-duration: 14s; animation-delay: 0s; font-size: 3.5rem; }
+.dish-2 { right: 6%; top: 20%; animation-duration: 16s; animation-delay: 1.5s; font-size: 3.2rem; }
+.dish-3 { left: 3%; bottom: 25%; animation-duration: 15s; animation-delay: 2.5s; font-size: 4rem; }
+.dish-4 { right: 4%; bottom: 20%; animation-duration: 18s; animation-delay: 0.8s; font-size: 3.8rem; }
+.dish-5 { left: 12%; top: 45%; animation-duration: 20s; animation-delay: 1.2s; font-size: 2.6rem; }
+.dish-6 { right: 12%; top: 48%; animation-duration: 17s; animation-delay: 3s; font-size: 2.8rem; }
+.dish-7 { left: 20%; bottom: 10%; animation-duration: 19s; animation-delay: 0.5s; font-size: 3rem; }
+.dish-8 { right: 20%; bottom: 12%; animation-duration: 13s; animation-delay: 2s; font-size: 2.4rem; }
+.dish-9 { left: 45%; top: 5%; animation-duration: 22s; animation-delay: 1.8s; font-size: 2.2rem; }
+.dish-10 { right: 45%; top: 3%; animation-duration: 16s; animation-delay: 0.3s; font-size: 2.5rem; }
+.dish-11 { left: 8%; top: 75%; animation-duration: 21s; animation-delay: 2.2s; font-size: 2.9rem; }
+.dish-12 { right: 8%; top: 72%; animation-duration: 14s; animation-delay: 1.0s; font-size: 3.1rem; }
+
+@keyframes floatDish {
+    0% { transform: translate(0, 0) rotate(0deg) scale(1); }
+    25% { transform: translate(30px, -25px) rotate(12deg) scale(1.08); }
+    50% { transform: translate(-20px, -40px) rotate(-8deg) scale(0.92); }
+    75% { transform: translate(15px, 20px) rotate(6deg) scale(1.05); }
+    100% { transform: translate(0, 0) rotate(0deg) scale(1); }
+}
+
+.robot-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    position: relative;
+    animation: robotAppear 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+@keyframes robotAppear {
+    from { transform: scale(0.6) translateY(40px); opacity: 0; }
+    to { transform: scale(1) translateY(0); opacity: 1; }
+}
+
+/* ---------- Robot Face ---------- */
+.robot-face {
+    width: 180px;
+    height: 200px;
+    border-radius: 50% 50% 45% 45% / 55% 55% 40% 40%;
+    background: radial-gradient(ellipse at 30% 25%, #9aabb8, #4a5a66);
+    box-shadow: 
+        0 0 0 5px var(--brass),
+        0 0 0 10px rgba(184, 134, 59, 0.25),
+        0 20px 70px rgba(0,0,0,0.6);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    animation: robotPulse 3s ease-in-out infinite;
+}
+
+@keyframes robotPulse {
+    0%, 100% { transform: scale(1) translateY(0); }
+    50% { transform: scale(1.02) translateY(-3px); }
+}
+
+/* Antenna */
+.antenna {
+    position: absolute;
+    top: -35px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 3px;
+    height: 35px;
+    background: linear-gradient(to top, var(--brass), var(--brass-light));
+    border-radius: 2px;
+}
+
+.antenna-ball {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, #ff6b6b, #cc0000);
+    box-shadow: 0 0 30px rgba(255, 100, 100, 0.5), 0 0 60px rgba(255, 100, 100, 0.2);
+    animation: antennaBlink 1.5s ease-in-out infinite;
+}
+
+@keyframes antennaBlink {
+    0%, 100% { opacity: 1; transform: translateX(-50%) scale(1); }
+    50% { opacity: 0.6; transform: translateX(-50%) scale(0.85); }
+}
+
+/* Eyes */
+.robot-eyes {
+    display: flex;
+    gap: 30px;
+    margin-top: 10px;
+}
+
+.eye {
+    width: 28px;
+    height: 34px;
+    background: #0a0a0a;
+    border-radius: 50%;
+    position: relative;
+    box-shadow: inset 0 0 15px rgba(255, 255, 255, 0.05);
+}
+
+.eye::after {
+    content: '';
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background: #7fc9ff;
+    border-radius: 50%;
+    top: 8px;
+    left: 8px;
+    box-shadow: 0 0 25px #7fc9ff, 0 0 50px rgba(127, 201, 255, 0.3);
+    animation: eyeGlow 2s ease-in-out infinite;
+}
+
+.eye.left::after {
+    animation-delay: 0s;
+}
+
+.eye.right::after {
+    animation-delay: 0.4s;
+}
+
+@keyframes eyeGlow {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.8); }
+}
+
+/* Big Smile */
+.robot-smile {
+    margin-top: 8px;
+    width: 120px;
+    height: 45px;
+    position: relative;
+}
+
+.smile-svg {
+    width: 100%;
+    height: 100%;
+}
+
+.smile-svg path {
+    stroke-dasharray: 300;
+    stroke-dashoffset: 0;
+    animation: smileDraw 1.5s ease forwards;
+}
+
+@keyframes smileDraw {
+    from { stroke-dashoffset: 300; }
+    to { stroke-dashoffset: 0; }
+}
+
+/* Cheeks */
+.cheek {
+    position: absolute;
+    width: 28px;
+    height: 20px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255, 150, 150, 0.4), rgba(255, 100, 100, 0.1));
+    animation: cheekGlow 2s ease-in-out infinite;
+}
+
+.left-cheek {
+    left: 15px;
+    bottom: 30px;
+}
+
+.right-cheek {
+    right: 15px;
+    bottom: 30px;
+}
+
+@keyframes cheekGlow {
+    0%, 100% { opacity: 0.6; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.1); }
+}
+
+/* ---------- Speech Bubble ---------- */
+.speech-bubble {
+    position: relative;
+    background: linear-gradient(135deg, var(--parchment), var(--parchment-dark));
+    padding: 18px 30px;
+    border-radius: 20px 20px 20px 5px;
+    max-width: 320px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+    animation: bubbleFloat 2.5s ease-in-out infinite;
+}
+
+@keyframes bubbleFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+}
+
+.bubble-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+}
+
+.robot-hello {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 42px;
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--burgundy), var(--brass));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: helloWave 1.5s ease-in-out infinite;
+    display: inline-block;
+}
+
+@keyframes helloWave {
+    0%, 100% { transform: rotate(-3deg) scale(1); }
+    50% { transform: rotate(3deg) scale(1.05); }
+}
+
+.robot-subtext {
+    font-family: 'Karla', sans-serif;
+    font-size: 14px;
+    color: var(--ink-soft);
+    letter-spacing: 1.5px;
+    -webkit-text-fill-color: var(--ink-soft);
+}
+
+.bubble-tail {
+    position: absolute;
+    bottom: -15px;
+    left: 20px;
+    width: 0;
+    height: 0;
+    border-left: 12px solid transparent;
+    border-right: 12px solid transparent;
+    border-top: 18px solid var(--parchment-dark);
+}
+
+/* ---------- Enter Button ---------- */
+.robot-btn {
+    background: linear-gradient(135deg, var(--brass), var(--brass-light));
+    color: var(--burgundy-deep);
+    border: none;
+    padding: 16px 48px;
+    border-radius: 999px;
+    font-family: 'Karla', sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 35px rgba(184, 134, 59, 0.4);
+    letter-spacing: 1px;
+    margin-top: 10px;
+}
+
+.robot-btn:hover {
+    transform: translateY(-3px) scale(1.04);
+    box-shadow: 0 14px 50px rgba(184, 134, 59, 0.55);
+}
+
+.robot-btn:active {
+    transform: scale(0.94);
+}
+
+/* ---------- MAIN CHAT UI (hidden initially) ---------- */
+.MainPage {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    gap: 22px;
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 500px;
+}
+
+.MainPage.visible {
+    display: flex;
+    animation: mainAppear 0.8s ease forwards;
+}
+
+@keyframes mainAppear {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ---------- Header ---------- */
+.head {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 4px;
+}
+
+.head__crest {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    border: 1.5px solid var(--brass);
+    background: var(--burgundy);
+    color: var(--brass-light);
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 600;
+    font-size: 17px;
+    letter-spacing: 1px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 6px;
+    opacity: 0;
+    transform: scale(0.7);
+    animation: crestIn 0.6s 0.1s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.head h1 {
+    margin: 0;
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 700;
+    font-size: 38px;
+    letter-spacing: 0.3px;
+    color: var(--burgundy-deep);
+    opacity: 0;
+    transform: translateY(-16px);
+    animation: fadeSlideIn 0.7s 0.25s ease-out forwards;
+}
+
+.head p {
+    margin: 2px 0 0;
+    font-size: 13.5px;
+    color: var(--ink-soft);
+    font-style: italic;
+    letter-spacing: 0.2px;
+    opacity: 0;
+    transform: translateY(-8px);
+    animation: fadeSlideIn 0.7s 0.45s ease-out forwards;
+}
+
+@keyframes crestIn {
+    to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes fadeSlideIn {
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ---------- Chat container ---------- */
+.chat-container {
+    width: 100%;
+    max-width: 460px;
+    background: var(--burgundy);
+    background-image: linear-gradient(165deg, var(--burgundy) 0%, var(--burgundy-deep) 100%);
+    border-radius: 20px;
+    padding: 0;
+    color: #fff;
+    box-shadow:
+        0 28px 60px -16px rgba(43, 24, 16, 0.45),
+        0 0 0 1px rgba(184, 134, 59, 0.25);
+    overflow: hidden;
+    margin: 0 auto;
+}
+
+.chat-container__header {
+    padding: 20px 22px 14px;
+    border-bottom: 1px solid rgba(184, 134, 59, 0.25);
+}
+
+.chat-container__title h3 {
+    margin: 0;
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 600;
+    font-size: 21px;
+    letter-spacing: 0.2px;
+    color: var(--brass-light);
+}
+
+.chat-container__status {
+    margin: 4px 0 0;
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.65);
+    display: flex;
+    align-items: center;
+    gap: 7px;
+}
+
+.seal {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: var(--brass-light);
+    box-shadow: 0 0 0 2px rgba(212, 168, 87, 0.25), 0 0 8px rgba(212, 168, 87, 0.6);
+    position: relative;
+}
+
+.seal::after {
+    content: '';
+    position: absolute;
+    inset: -5px;
+    border-radius: 50%;
+    border: 1px solid rgba(212, 168, 87, 0.4);
+    animation: sealPulse 2.4s ease-out infinite;
+}
+
+@keyframes sealPulse {
+    0% { transform: scale(0.6); opacity: 0.8; }
+    100% { transform: scale(1.6); opacity: 0; }
+}
+
+/* ---------- Chatbox ---------- */
+#chatbox {
+    height: 420px;
+    overflow-y: auto;
+    padding: 18px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    background-image:
+        repeating-linear-gradient(135deg, rgba(255,255,255,0.012) 0px, rgba(255,255,255,0.012) 1px, transparent 1px, transparent 10px);
+}
+
+#chatbox::-webkit-scrollbar {
+    width: 5px;
+}
+#chatbox::-webkit-scrollbar-thumb {
+    background: rgba(184, 134, 59, 0.4);
+    border-radius: 3px;
+}
+
+.user {
+    align-self: flex-end;
+    max-width: 80%;
+    background: var(--brass);
+    color: #2B1810;
+    padding: 10px 15px;
+    border-radius: 14px 14px 4px 14px;
+    font-size: 14.5px;
+    line-height: 1.45;
+    opacity: 0;
+    animation: bubbleIn 0.25s ease-out forwards;
+}
+
+.bot {
+    align-self: flex-start;
+    max-width: 84%;
+    display: flex;
+    align-items: flex-start;
+    gap: 9px;
+    opacity: 0;
+    animation: bubbleIn 0.25s ease-out forwards;
+}
+
+.bot__avatar {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: var(--parchment-dark);
+    color: var(--burgundy);
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 700;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.bot span {
+    background: var(--parchment);
+    color: var(--ink);
+    padding: 10px 15px;
+    border-radius: 14px 14px 14px 4px;
+    font-size: 14.5px;
+    line-height: 1.5;
+    display: inline-block;
+}
+
+.bot.fallback span {
+    background: transparent;
+    border: 1.4px dashed rgba(212, 168, 87, 0.55);
+    color: rgba(255, 255, 255, 0.75);
+}
+
+@keyframes bubbleIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.typing-dots {
+    display: inline-flex;
+    gap: 4px;
+    padding: 4px 2px;
+}
+
+.typing-dots span {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--ink-soft);
+    opacity: 0.4;
+    animation: blink 1.3s infinite;
+}
+
+.typing-dots span:nth-child(2) { animation-delay: 0.18s; }
+.typing-dots span:nth-child(3) { animation-delay: 0.36s; }
+
+@keyframes blink {
+    0%, 60%, 100% { transform: translateY(0); opacity: 0.35; }
+    30% { transform: translateY(-3px); opacity: 0.9; }
+}
+
+/* ---------- Quick replies ---------- */
+.quick-replies {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+    padding: 0 20px 14px;
+}
+
+.quick-replies button {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(184, 134, 59, 0.4);
+    color: var(--brass-light);
+    font-family: 'Karla', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    padding: 6px 13px;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: background 0.15s, border-color 0.15s, transform 0.1s;
+}
+
+.quick-replies button:hover {
+    background: rgba(184, 134, 59, 0.18);
+    border-color: var(--brass-light);
+}
+
+.quick-replies button:active {
+    transform: scale(0.96);
+}
+
+/* ---------- Input area ---------- */
+.input-area {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 18px;
+    background: rgba(0, 0, 0, 0.12);
+    border-top: 1px solid rgba(184, 134, 59, 0.25);
+}
+
+input {
+    flex: 1;
+    padding: 11px 16px;
+    border-radius: 999px;
+    border: 1.5px solid rgba(184, 134, 59, 0.3);
+    background: rgba(255, 255, 255, 0.95);
+    color: var(--ink);
+    font-family: 'Karla', sans-serif;
+    font-size: 14.5px;
+    outline: none;
+    transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+input::placeholder {
+    color: var(--ink-soft);
+    opacity: 0.7;
+}
+
+input:focus {
+    border-color: var(--brass-light);
+    box-shadow: 0 0 0 3px rgba(212, 168, 87, 0.2);
+}
+
+.input-area button {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: var(--brass);
+    color: var(--burgundy-deep);
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: background 0.15s, transform 0.1s;
+}
+
+.input-area button:hover {
+    background: var(--brass-light);
+}
+
+.input-area button:active {
+    transform: scale(0.92);
+}
+
+.input-area button:focus-visible,
+.quick-replies button:focus-visible,
+input:focus-visible {
+    outline: 2px solid var(--brass-light);
+    outline-offset: 2px;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 480px) {
+    body { padding: 16px 10px; }
+    .chat-container { width: 100%; }
+    #chatbox { height: 56vh; }
+    .head h1 { font-size: 30px; }
+    
+    .robot-face { width: 140px; height: 160px; }
+    .robot-hello { font-size: 32px; }
+    .robot-subtext { font-size: 12px; }
+    .eye { width: 20px; height: 26px; }
+    .eye::after { width: 9px; height: 9px; top: 6px; left: 5px; }
+    .robot-eyes { gap: 22px; }
+    .robot-smile { width: 90px; height: 35px; }
+    .cheek { width: 20px; height: 14px; }
+    .left-cheek { left: 8px; bottom: 22px; }
+    .right-cheek { right: 8px; bottom: 22px; }
+    .robot-btn { padding: 14px 32px; font-size: 16px; }
+    .speech-bubble { padding: 14px 20px; max-width: 260px; }
+    .dish { font-size: 2rem !important; }
+    .antenna-ball { width: 12px; height: 12px; top: -10px; }
+    .antenna { height: 28px; top: -28px; }
+}
+
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+    .head__crest, .head h1, .head p, .user, .bot, .seal::after,
+    .robot-container, .robot-btn, .robot-hello, .eye::after,
+    .robot-face, .cheek, .speech-bubble, .antenna-ball {
+        animation: none !important;
+        opacity: 1 !important;
+        transform: none !important;
+    }
+    .food-emoji, .dish {
+        animation: none !important;
+        transform: none !important;
+        opacity: 0.08 !important;
+    }
+    .robot-overlay {
+        transition: none !important;
+    }
+    .smile-svg path {
+        animation: none !important;
+    }
+}
